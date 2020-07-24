@@ -7,11 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 
+    private static long requestCount = 0;
+
     @Value("${spring.application.name}")
     private String appName;
 
     @GetMapping("/")
     public String home() {
-        return "Hello im " + appName + " server";
+        ++requestCount;
+        return "Hello im " + appName + " server, handled requests " + requestCount + " times";
     }
 }
